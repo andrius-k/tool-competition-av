@@ -1,7 +1,7 @@
 import json
 import logging as log
 
-from beamngpy import BeamNGpy, Scenario, Vehicle
+from beamngpy import BeamNGpy, Scenario, Vehicle, StaticObject
 from beamngpy.sensors import Camera
 
 from self_driving.beamng_waypoint import BeamNGWaypoint
@@ -88,6 +88,13 @@ class BeamNGBrewer:
 
         if self.camera:
             self.scenario.add_camera(self.camera.camera, self.camera.name)
+
+        # Add s couple of trees as obstacles on the road
+        ramp1 = StaticObject(name='tree_oak_large_b200', pos=(12.0, 30.0, -28.0), rot=(1, 1, 1), scale=(1, 1, 1), shape='/levels/tig/art/shapes/tree_oak_large_b.dae')
+        self.scenario.add_object(ramp1)
+
+        ramp2 = StaticObject(name='tree_oak_large_b600', pos=(8.0, 50.0, -28.0), rot=(1, 1, 1), scale=(1, 1, 1), shape='/levels/tig/art/shapes/tree_oak_large_b.dae')
+        self.scenario.add_object(ramp2)
 
         self.scenario.make(self.beamng)
 
